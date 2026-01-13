@@ -4,8 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flight Booking Simulator</title>
+    <script>
+      // quick inline check to confirm JS is executing in production
+      try {
+        console.log('inline-script: page loading')
+      } catch (e) {}
+    </script>
   </head>
   <body>
+    <noscript>
+      <div style="padding:24px;font-family:system-ui,Segoe UI,Roboto,Arial; color:#b22222;">
+        This application requires JavaScript. Please enable JavaScript in your browser to view the app.
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
