@@ -15,9 +15,15 @@ export default function App(){
     // check session
     const BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'
     fetch(`${BASE}/me`, { credentials: 'include' })
-      .then(r=>r.json())
-      .then(data=>{
-        if (data && data.status === 'success' && data.user){
+      .then(async (r) => {
+        // be defensive: some hosts return HTML on error which will throw on r.json()
+        let data = null
+        try {
+          data = await r.json()
+        } catch (e) {
+          data = null
+        }
+        if (r.ok && data && data.status === 'success' && data.user){
           setUser(data.user)
           setShowAuth(false)
         } else {
